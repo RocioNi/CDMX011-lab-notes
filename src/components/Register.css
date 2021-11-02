@@ -1,0 +1,126 @@
+
+#containerRegister{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 580px;
+    height: 620px;
+    left: 90px;
+    top: 276px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 4px solid #7B61FF;
+    border-radius: 30px;
+  }
+
+  #RegisterText{
+     display: flex;
+     justify-content: center;
+     margin-top:0px;
+     color: white;
+     font-family: Inter;
+     font-style: normal;
+     font-size: 38px;
+  }
+
+  #Name{
+    display: flex;
+    align-items: center;
+    padding: 32px 24px 24px;
+    position:absolute;
+    width: 450px;
+    height: 7px;
+     top: 70px; 
+    background: #FCDDEC;
+    border-radius: 59.025px;
+    font-size: 30px;
+      }
+
+  #emailRegister {
+display: flex;
+align-items: center;
+padding: 32px 24px 24px;
+position:absolute;
+width: 450px;
+height: 7px;
+ top: 165px; 
+background: #FCDDEC;
+border-radius: 59.025px;
+font-size: 30px;
+  }
+
+
+  #passwordRegister{
+    display: flex;
+    align-items: center;
+    padding: 32px 24px 24px;
+    position:absolute;
+    width: 450px;
+    height: 7px;
+     top: 260px; 
+    background: #FCDDEC;
+    border-radius: 59.025px;
+    font-size: 30px;
+      }
+
+      #passwordConfirm{
+        display: flex;
+        align-items: center;
+        padding: 32px 24px 24px;
+        position:absolute;
+        width: 450px;
+        height: 7px;
+         top: 355px; 
+        background: #FCDDEC;
+        border-radius: 59.025px;
+        font-size: 30px;
+          }
+      
+    #GoButtonRegister{
+    position: absolute;
+    top: 450px;
+    bottom: 33.54%;
+    background: #52B6ED;
+    border-radius: 20px;
+    height: 50px;
+    width: 350px;
+    font-size: 35px;
+    }
+
+    #GoogleButtonRegister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:200px;
+    top: 200px;
+    height: 50px;
+    width: 350px;
+    background: #EDA652;
+    border-radius: 20px;
+    margin-top: 570px;
+    font-size: 30px;
+    }
+
+    #returnText{
+      display: flex;
+      color: white;
+      width: 89%;
+      font-family: Inter;
+      font-size: 30px;
+      margin-left:70px;
+      margin-top:80px;
+    }
+
+    #homeButton{
+     
+    top: 200px;
+    bottom: 33.54%;
+    background: #52B6ED;
+    border-radius: 20px;
+    height: 50px;
+    width: 300px;
+    font-size: 35px;
+    margin-left:30px;
+
+    }
+
+   
