@@ -1,8 +1,9 @@
 import React, { } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
+// import { auth, provider } from '../firebase';
 
 const Home = () => (
-
   <>
     <div id="containerTitle">
       <div className="circles">
@@ -36,12 +37,15 @@ const Home = () => (
     <p id="registerAsk">
       Don´t you have an account?
       {' '}
-      <button id="RegisterButton" type="submit">
-        Register
-      </button>
+      <Link to="/Register">
+        <button id="RegisterButton" type="submit">
+          Register
+        </button>
+
+      </Link>
+
     </p>
 
   </>
 );
-
 export default Home;

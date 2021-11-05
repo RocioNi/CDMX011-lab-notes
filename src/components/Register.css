@@ -14,6 +14,7 @@
 
   #RegisterText{
      display: flex;
+     height:100px;
      justify-content: center;
      margin-top:0px;
      color: white;
@@ -22,7 +23,7 @@
      font-size: 38px;
   }
 
-  #Name{
+  #name{
     display: flex;
     align-items: center;
     padding: 32px 24px 24px;
@@ -88,18 +89,25 @@ font-size: 30px;
 
     #GoogleButtonRegister{
     display: flex;
-    justify-content: center;
+    position:absolute;
     align-items: center;
-    margin-left:200px;
-    top: 200px;
+    margin: left -300px;
     height: 50px;
     width: 350px;
     background: #EDA652;
     border-radius: 20px;
-    margin-top: 570px;
+    margin-top: 550px;
     font-size: 30px;
     }
 
+    #returnComponents{
+        display: flex;
+        color: white;
+        width: 99%;
+        font-family: Inter;
+        font-size: 30px; 
+        margin-top:600px;  
+    }
     #returnText{
       display: flex;
       color: white;
