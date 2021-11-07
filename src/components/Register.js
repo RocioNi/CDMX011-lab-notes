@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Register.css';
-import { auth, provider } from '../firebase';
+import { createUserEmail, googleRegister } from '../firebase';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -17,22 +17,20 @@ const Register = () => {
       alert('Completa los campos requeridos');
     } else if (password !== passwordConfirm) { alert('The password doesn´t match'); }
     if (password === passwordConfirm) {
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          history.push('/Feed');
-          console.log('Register ok');
-        })
+      createUserEmail(email, password).then(() => {
+        history.push('/Feed');
+        console.log('Register ok');
+      })
         .catch((err) => console.log(err));
     }
   };
 
-  const googleRegister = (e) => {
+  const googleSignIn = (e) => {
     e.preventDefault();
-    auth.signInWithPopup(provider)
-      .then(() => {
-        history.push('/Feed');
-        console.log('Register Google ok');
-      })
+    googleRegister().then(() => {
+      history.push('/Feed');
+      console.log('Register Google ok');
+    })
       .catch((err) => console.log(err));
   };
 
@@ -66,7 +64,7 @@ const Register = () => {
         {/* </Link> */}
 
         {/* <Link to="/Feed"> */}
-        <button id="GoogleButtonRegister" type="submit" onClick={googleRegister}>
+        <button id="GoogleButtonRegister" type="submit" onClick={googleSignIn}>
           <img className="logoGoogle" src="images/google-logo.png" alt="G" />
           Register with Google
           {' '}
