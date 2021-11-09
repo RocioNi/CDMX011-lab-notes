@@ -22,6 +22,8 @@ const googleRegister = () => auth.signInWithPopup(provider);
 
 const createUserEmail = (email, password) => auth.createUserWithEmailAndPassword(email, password);
 
+const LogInUser = (email, password) => auth.signInWithEmailAndPassword(email, password);
+
 export {
-  db, auth, provider, googleRegister, createUserEmail,
+  db, auth, provider, googleRegister, createUserEmail, LogInUser,
 };
