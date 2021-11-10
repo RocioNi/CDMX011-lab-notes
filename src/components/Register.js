@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Register.css';
-import { createUserEmail, googleRegister } from '../firebase';
+import { createUserEmail, googleRegister } from '../Firebase/FirebaseAuth';
 
 const Register = () => {
   const [name, setName] = useState('');

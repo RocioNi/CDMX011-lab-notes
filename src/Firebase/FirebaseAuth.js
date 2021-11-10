@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';
+
 import 'firebase/auth';
 import { } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const firebaseConfig = {
 // Initialize Firebase
 
 const fb = firebase.initializeApp(firebaseConfig);
-const db = fb.firestore();
+
 const auth = fb.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -24,6 +24,7 @@ const createUserEmail = (email, password) => auth.createUserWithEmailAndPassword
 
 const LogInUser = (email, password) => auth.signInWithEmailAndPassword(email, password);
 
+export default { fb, auth, provider };
 export {
-  db, auth, provider, googleRegister, createUserEmail, LogInUser,
+  googleRegister, createUserEmail, LogInUser,
 };

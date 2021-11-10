@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { LogInUser, googleRegister } from '../firebase';
+import { LogInUser, googleRegister } from '../Firebase/FirebaseAuth';
 import './Home.css';
 // import { auth, provider } from '../firebase';
 
