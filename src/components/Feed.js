@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import Modal from './modal';
+import React, { useState } from 'react';
+import { } from 'react-router-dom';
+import { creatingNotes } from '../Firebase/Firestore';
+
+// import { useHistory } from 'react-router-dom';
+// import LogOut from '../Firebase/FirebaseAuth';
 import './Feed.css';
-import fb from '../Firebase/FirebaseAuth';
 
 const Feed = () => {
-  const [notes, setNotes] = useState([]);
-  const [seeModal, setSeeModal] = useState(false);
-  const openModal = () => {
-    setShowModal((prev) => !prev);
-  };
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
 
-  const db = fb.firestore();
-  const giveNotes = () => {
-    db.collection('allNotes').onSnapshot((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setNotes(docs);
-    });
-  };
-
-  useEffect(() => {
-    giveNotes();
-  }, []);
-
+  const newNote = (e) => e.preventDefault();
+  // creatingNotes(title, text).then(() => {
+  //   console.log('Document successfully written!');
+  // });
+  creatingNotes(title, text).then(() => {
+    console.log('Function ok');
+  });
+  return (
     <>
       <div id="containerTitle">
         <div className="circles">
@@ -48,16 +41,25 @@ const Feed = () => {
 
       <div id="containerNotes">
         <p id="Notes">Feed</p>
-        {/* <Link to="/"> */}
         <p id="addNote"> Add Note</p>
-        <button id="addNote" type="submit" onClick={openModal}>
-          <img className="addNote" src="images/nueva-tarea.png" alt="G" />
+        <button id="addNote" type="submit">
+          <img className="addNote" src="images/nueva-tarea.png" alt="New" />
           {' '}
         </button>
-        <Modal showModal={seeModal} setShowModal={setSeeModal} />
+      </div>
+      <div>
+        <input id="titleNote" type="text" required placeholder="Title" onChange={(e) => { setTitle(e.target.value); }} />
+        <textarea id="textNote" type="text" placeholder="Introduce your note" onChange={(e) => { setText(e.target.value); }} />
+        <button id="saveNote" type="submit" onClick={newNote}>Save</button>
+      </div>
+      <div id="DivLogout">
+        <button id="LogOut" type="submit">
+          <img src="images/cerrar-sesion.png" alt="LogOut" />
+        </button>
       </div>
 
-    </>;
+    </>
+  );
 };
 
 export default Feed;

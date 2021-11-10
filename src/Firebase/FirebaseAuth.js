@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
-
+import 'firebase/firestore';
 import 'firebase/auth';
-import { } from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBXRRw_gBAXR3OkQnSFB-xAsrk45xzD1Hk',
@@ -13,9 +12,11 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 
-const fb = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-const auth = fb.auth();
+const db = firebase.firestore();
+
+const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
 const googleRegister = () => auth.signInWithPopup(provider);
@@ -24,7 +25,8 @@ const createUserEmail = (email, password) => auth.createUserWithEmailAndPassword
 
 const LogInUser = (email, password) => auth.signInWithEmailAndPassword(email, password);
 
-export default { fb, auth, provider };
+const LogOut = () => auth.signOut();
+
 export {
-  googleRegister, createUserEmail, LogInUser,
+  db, auth, provider, googleRegister, createUserEmail, LogInUser, LogOut,
 };
