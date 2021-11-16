@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
-import { } from 'react-router-dom';
-import { creatingNotes } from '../Firebase/Firestore';
+import { useHistory } from 'react-router-dom';
+import Modal from './Modal';
+import { LogOut } from '../Firebase/FirebaseAuth';
 
 // import { useHistory } from 'react-router-dom';
 // import LogOut from '../Firebase/FirebaseAuth';
 import './Feed.css';
 
 const Feed = () => {
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
+  // investigar el uso de setState y que devuelve la funcion
+  const history = useHistory();
+  const [show, setShow] = useState(false);
+  // comprender porque adentro de seeModal llamamos a setOpenModal
+  const handleShow = () => setShow(true);
+  const handleClose=
+  
 
-  const newNote = (e) => e.preventDefault();
-  // creatingNotes(title, text).then(() => {
-  //   console.log('Document successfully written!');
-  // });
-  creatingNotes(title, text).then(() => {
-    console.log('Function ok');
-  });
+  const LogOutFeed = () => {
+    LogOut().then(() => {
+      history.push('/');
+      console.log('LogOut ok');
+    })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div id="containerTitle">
@@ -42,22 +48,20 @@ const Feed = () => {
       <div id="containerNotes">
         <p id="Notes">Feed</p>
         <p id="addNote"> Add Note</p>
-        <button id="addNote" type="submit">
+        <button id="addNote" type="submit" onClick={seeModal}>
           <img className="addNote" src="images/nueva-tarea.png" alt="New" />
           {' '}
         </button>
+        <div id="btn modal">
+          {/* manejo de props */}
+          <Modal openModal={openModal} setOpenModal={seeModal} />
+        </div>
+        <div id="DivLogout">
+          <button id="LogOut" type="submit" onClick={LogOutFeed}>
+            <img src="images/cerrar-sesion.png" alt="LogOut" />
+          </button>
+        </div>
       </div>
-      <div>
-        <input id="titleNote" type="text" required placeholder="Title" onChange={(e) => { setTitle(e.target.value); }} />
-        <textarea id="textNote" type="text" placeholder="Introduce your note" onChange={(e) => { setText(e.target.value); }} />
-        <button id="saveNote" type="submit" onClick={newNote}>Save</button>
-      </div>
-      <div id="DivLogout">
-        <button id="LogOut" type="submit">
-          <img src="images/cerrar-sesion.png" alt="LogOut" />
-        </button>
-      </div>
-
     </>
   );
 };
