@@ -7,14 +7,15 @@ import { LogOut } from '../Firebase/FirebaseAuth';
 // import LogOut from '../Firebase/FirebaseAuth';
 import './Feed.css';
 
-const Feed = () => {
+const Feed = (initialValue = false) => {
   // investigar el uso de setState y que devuelve la funcion
   const history = useHistory();
-  const [show, setShow] = useState(false);
+  const [isOpen, setIsOpen] = useState(initialValue);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
   // comprender porque adentro de seeModal llamamos a setOpenModal
-  const handleShow = () => setShow(true);
-  const handleClose=
-  
 
   const LogOutFeed = () => {
     LogOut().then(() => {
@@ -48,13 +49,17 @@ const Feed = () => {
       <div id="containerNotes">
         <p id="Notes">Feed</p>
         <p id="addNote"> Add Note</p>
-        <button id="addNote" type="submit" onClick={seeModal}>
+        <button id="addNote" type="submit" onClick={openModal}>
           <img className="addNote" src="images/nueva-tarea.png" alt="New" />
           {' '}
         </button>
         <div id="btn modal">
           {/* manejo de props */}
-          <Modal openModal={openModal} setOpenModal={seeModal} />
+          <Modal isOpen={isOpen} closeModal={closeModal}>
+            {' '}
+            <p>modal prueba</p>
+            {' '}
+          </Modal>
         </div>
         <div id="DivLogout">
           <button id="LogOut" type="submit" onClick={LogOutFeed}>

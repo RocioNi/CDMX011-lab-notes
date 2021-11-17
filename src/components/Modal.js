@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { creatingNotes } from '../Firebase/Firestore';
 import './Modal.css';
 // manejo de props
-const Modal = () => {
+const Modal = (isOpen, closeModal) => {
   const [title, setTitle] = useState('');
   const [note, setNote] = useState('');
 
@@ -10,25 +10,21 @@ const Modal = () => {
     e.preventDefault();
     creatingNotes(title, note).then(() => {
       console.log('Function ok');
-      setOpenModal((prev) => !prev);
     });
   };
   // uso de esos props
-  return openModal ? (
+  return (
     <>
-      <section className="modal">
-        <form className="modalCreateNote">
-          <div className="btn-close">
-            <button id="btn-close" type="submit" onClick={() => setOpenModal((prev) => !prev)}>x</button>
-          </div>
-          <input id="titleNote" type="text" required placeholder="Title" onChange={(e) => { setTitle(e.target.value); }} />
-          <textarea id="textNote" type="text" placeholder="Introduce your note" onChange={(e) => { setNote(e.target.value); }} />
-          <button id="saveNote" type="submit" onClick={newNote}>Save</button>
-        </form>
-
-      </section>
+      <article className={`modal${isOpen && 'is-open'}`}>
+        <div className="modal-container">
+          <button className="modal-close" type="submit" onClick={closeModal}>x</button>
+        </div>
+        <input id="titleNote" type="text" required placeholder="Title" onChange={(e) => { setTitle(e.target.value); }} />
+        <textarea id="textNote" type="text" placeholder="Introduce your note" onChange={(e) => { setNote(e.target.value); }} />
+        <button id="saveNote" type="submit" onClick={newNote}>Save</button>
+      </article>
     </>
-  ) : <h3>Push the button</h3>;
+  );
 };
 
 export default Modal;
