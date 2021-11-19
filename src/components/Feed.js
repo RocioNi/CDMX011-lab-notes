@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from './Modal';
 import { LogOut } from '../Firebase/FirebaseAuth';
+import useModal from './useModal';
 
 // import { useHistory } from 'react-router-dom';
 // import LogOut from '../Firebase/FirebaseAuth';
 import './Feed.css';
 
-const Feed = (initialValue = false) => {
+const Feed = () => {
   // investigar el uso de setState y que devuelve la funcion
   const history = useHistory();
-  const [isOpen, setIsOpen] = useState(initialValue);
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
   // comprender porque adentro de seeModal llamamos a setOpenModal
+
+  const { closeModal, openModal, isOpen } = useModal(false);
 
   const LogOutFeed = () => {
     LogOut().then(() => {
@@ -48,25 +46,23 @@ const Feed = (initialValue = false) => {
 
       <div id="containerNotes">
         <p id="Notes">Feed</p>
-        <p id="addNote"> Add Note</p>
-        <button id="addNote" type="submit" onClick={openModal}>
-          <img className="addNote" src="images/nueva-tarea.png" alt="New" />
+        <p id="addNoteText">
           {' '}
-        </button>
-        <div id="btn modal">
-          {/* manejo de props */}
-          <Modal isOpen={isOpen} closeModal={closeModal}>
+          New Note
+          <button id="addNote" type="submit" onClick={openModal}>
+            <img className="addNoteImg" src="images/nueva-tarea1.png" alt="New" />
             {' '}
-            <p>modal prueba</p>
-            {' '}
-          </Modal>
-        </div>
-        <div id="DivLogout">
-          <button id="LogOut" type="submit" onClick={LogOutFeed}>
-            <img src="images/cerrar-sesion.png" alt="LogOut" />
           </button>
-        </div>
+        </p>
+        {/* manejo de props */}
+        <Modal isOpen={isOpen} closeModal={closeModal} />
       </div>
+      <div id="LogOut">
+        <button id="LogOutBtn" type="submit" onClick={LogOutFeed}>
+          <img className="LogOutImg" src="images/salida.png" alt="LogOut" />
+        </button>
+      </div>
+
     </>
   );
 };
