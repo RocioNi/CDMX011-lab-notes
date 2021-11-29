@@ -7,6 +7,7 @@ import './Home.css';
 const Home = () => {
   const [emailLogin, setEmailLogin] = useState();
   const [password, setPassword] = useState();
+
   const history = useHistory();
 
   const LogIn = (e) => {
@@ -15,7 +16,7 @@ const Home = () => {
       history.push('/Feed');
       console.log('Login ok');
     })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   const googleLogIn = (e) => {
@@ -46,7 +47,6 @@ const Home = () => {
           <p id="slogan">Don´t forget important things</p>
         </div>
       </div>
-
       <div id="containerLog">
         <p id="Login">Log in</p>
         <input id="emailLogin" type="email" required placeholder="Email" onChange={(e) => { setEmailLogin(e.target.value); }} />

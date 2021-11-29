@@ -1,4 +1,38 @@
-#addNote {
- color:white;
+#containerNotes{
+    width: 700px;
+    height: 650px;
+    justify-content: center;
+    align-items: center;
+}
 
+
+
+#addNote, #LogOut{
+ background-color:black;
 }   
+
+#addNoteText{
+    color: white;
+    font-size: 3rem;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+  justify-content: center;
+  width: 800px;
+
+}
+
+.addNoteImg{
+    width: 70px;
+    height: 70px;
+}
+.LogOutImg{
+    width: 70px;
+    height: 70px;
+}
+
+#LogOut {
+    display: flex;
+   justify-content: flex-end;
+    
+}

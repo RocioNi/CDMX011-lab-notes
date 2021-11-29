@@ -5,7 +5,9 @@
     margin: 0 auto;
     max-width: 767px;
   }
-  
+  .errorSection{
+    color:red;
+  }
   h1,h3{
     color: white;
     margin-top: 20px;

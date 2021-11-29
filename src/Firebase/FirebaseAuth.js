@@ -27,6 +27,8 @@ const LogInUser = (email, password) => auth.signInWithEmailAndPassword(email, pa
 
 const LogOut = () => auth.signOut();
 
+const user = firebase.auth().currentUser;
+
 export {
-  db, auth, provider, googleRegister, createUserEmail, LogInUser, LogOut,
+  db, auth, provider, googleRegister, createUserEmail, LogInUser, LogOut, user,
 };

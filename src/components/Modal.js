@@ -24,7 +24,6 @@ const Modal = ({ isOpen, closeModal }) => { // conocer sobre le paso de props
         <textarea id="textNote" type="text" placeholder="Introduce your note" onChange={(e) => { setNote(e.target.value); }} />
         <button id="saveNote" type="submit" onClick={newNote}>Save</button>
       </div>
-
     </article>
 
   );
