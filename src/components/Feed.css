@@ -26,6 +26,10 @@
     width: 70px;
     height: 70px;
 }
+
+.list-group-item{
+    color:white;
+}
 .LogOutImg{
     width: 70px;
     height: 70px;

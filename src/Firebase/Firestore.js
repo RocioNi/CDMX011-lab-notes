@@ -5,3 +5,5 @@ export const creatingNotes = (title, text) => db.collection('allNotes').doc().se
   title,
   text,
 });
+
+export const allData = db.collection('allNotes').get();

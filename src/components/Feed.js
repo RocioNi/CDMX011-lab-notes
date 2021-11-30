@@ -1,7 +1,8 @@
-import React, { } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from './Modal';
 import { LogOut } from '../Firebase/FirebaseAuth';
+import { allData } from '../Firebase/Firestore';
 import useModal from './useModal';
 
 // import { useHistory } from 'react-router-dom';
@@ -14,6 +15,22 @@ const Feed = () => {
   // comprender porque adentro de seeModal llamamos a setOpenModal
 
   const { closeModal, openModal, isOpen } = useModal(false);
+  const [tareas, setTareas] = useState([]);
+
+  useEffect(() => {
+    const obteinData = async () => {
+      try {
+        const data = await allData;
+        console.log(data.docs);
+        const arrayData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        console.log(arrayData);
+        setTareas(arrayData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    obteinData();
+  }, []);
 
   const LogOutFeed = () => {
     LogOut().then(() => {
@@ -56,7 +73,18 @@ const Feed = () => {
         </p>
         {/* manejo de props */}
         <Modal isOpen={isOpen} closeModal={closeModal} />
+        <div className="containerAlllNotes">
+          <div className="list-group">
+            {tareas.map((item) => (
+              <div className="list-group-item" key={item.id}>
+                {item.title}
+                {item.text}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
       <div id="LogOut">
         <button id="LogOutBtn" type="submit" onClick={LogOutFeed}>
           <img className="LogOutImg" src="images/salida.png" alt="LogOut" />
