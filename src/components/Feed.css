@@ -27,9 +27,24 @@
     height: 70px;
 }
 
-.list-group-item{
-    color:white;
-}
+
+.card-body{
+    align-content: space-around;
+    border-style: solid;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    background-color: #FEFFDE;
+    margin: 10px;
+  
+  }
+
+  .containerAlllNotes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
 .LogOutImg{
     width: 70px;
     height: 70px;

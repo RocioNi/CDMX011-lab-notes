@@ -17,18 +17,32 @@ const Feed = () => {
   const { closeModal, openModal, isOpen } = useModal(false);
   const [tareas, setTareas] = useState([]);
 
+  // useEffect(() => {
+  //   const obteinData = async () => {
+  //     try {
+  //       const data = await allData;
+  //       console.log(data.docs);
+  //       const arrayData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  //       console.log(arrayData);
+  //       setTareas(arrayData);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   obteinData();
+  // }, []);
+
+  const obteinData = () => {
+    allData.onSnapshot((querySnapshot) => {
+      const arrayData = [];
+      querySnapshot.forEach((doc) => {
+        arrayData.push({ id: doc.id, ...doc.data() });
+      });
+      console.log(arrayData);
+      setTareas(arrayData);
+    });
+  };
   useEffect(() => {
-    const obteinData = async () => {
-      try {
-        const data = await allData;
-        console.log(data.docs);
-        const arrayData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        console.log(arrayData);
-        setTareas(arrayData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     obteinData();
   }, []);
 
@@ -74,15 +88,17 @@ const Feed = () => {
         {/* manejo de props */}
         <Modal isOpen={isOpen} closeModal={closeModal} />
         <div className="containerAlllNotes">
-          <div className="list-group">
-            {tareas.map((item) => (
-              <div className="list-group-item" key={item.id}>
-                {item.title}
-                {item.text}
-              </div>
-            ))}
-          </div>
+          {tareas.map((tarea) => (
+
+            <div className="card-body" key={tarea.id}>
+              <h2>{tarea.title}</h2>
+              <p>{tarea.text}</p>
+            </div>
+
+          ))}
+
         </div>
+
       </div>
 
       <div id="LogOut">
