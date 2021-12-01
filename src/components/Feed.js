@@ -17,34 +17,26 @@ const Feed = () => {
   const { closeModal, openModal, isOpen } = useModal(false);
   const [tareas, setTareas] = useState([]);
 
-  // useEffect(() => {
-  //   const obteinData = async () => {
-  //     try {
-  //       const data = await allData;
-  //       console.log(data.docs);
-  //       const arrayData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  //       console.log(arrayData);
-  //       setTareas(arrayData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   obteinData();
-  // }, []);
-
-  const obteinData = () => {
-    allData.onSnapshot((querySnapshot) => {
-      const arrayData = [];
-      querySnapshot.forEach((doc) => {
-        arrayData.push({ id: doc.id, ...doc.data() });
-      });
-      console.log(arrayData);
-      setTareas(arrayData);
-    });
-  };
   useEffect(() => {
+    const obteinData = () => {
+      allData.onSnapshot((querySnapshot) => {
+        const arrayData = [];
+        querySnapshot.forEach((doc) => {
+          arrayData.push({ id: doc.id, ...doc.data() });
+        });
+        console.log(arrayData);
+        setTareas(arrayData);
+      });
+    };
     obteinData();
   }, []);
+
+  const deleteNote = (id) => {
+    if (window.confirm('Are you sure?')) {
+      allData.doc(id).delete();
+      console.log('note deleted');
+    }
+  };
 
   const LogOutFeed = () => {
     LogOut().then(() => {
@@ -93,6 +85,7 @@ const Feed = () => {
             <div className="card-body" key={tarea.id}>
               <h2>{tarea.title}</h2>
               <p>{tarea.text}</p>
+              <button className="deleteBtn" type="submit" onClick={() => deleteNote(tarea.id)}>Borrar </button>
             </div>
 
           ))}
