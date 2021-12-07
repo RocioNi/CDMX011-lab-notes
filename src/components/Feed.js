@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from './Modal';
-import { LogOut } from '../Firebase/FirebaseAuth';
+import { auth, LogOut } from '../Firebase/FirebaseAuth';
 import { allData } from '../Firebase/Firestore';
 import useModal from './useModal';
 
@@ -16,6 +16,8 @@ const Feed = () => {
 
   const { closeModal, openModal, isOpen } = useModal(false);
   const [tareas, setTareas] = useState([]);
+  // const [user, setUser] = useState(null);
+  const [firebaseUser, setFirebaseUser] = useState(false);
 
   useEffect(() => {
     const obteinData = () => {
@@ -29,6 +31,27 @@ const Feed = () => {
       });
     };
     obteinData();
+  }, []);
+
+  useEffect(() => {
+    if (auth.currentUser) {
+      console.log('hay usuario loggeado');
+      // setUser(auth.currentUser);
+    } else {
+      console.log('No hay usuario');
+      history.push('/');
+    }
+  }, []);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        setFirebaseUser(user);
+      } else {
+        setFirebaseUser(null);
+      }
+    });
   }, []);
 
   const deleteNote = (id) => {
@@ -45,7 +68,7 @@ const Feed = () => {
     })
       .catch((err) => console.log(err));
   };
-  return (
+  return firebaseUser !== false ? (
     <>
       <div id="containerTitle">
         <div className="circles">
@@ -101,7 +124,7 @@ const Feed = () => {
       </div>
 
     </>
-  );
+  ) : (<p>Loading</p>);
 };
 
 export default Feed;

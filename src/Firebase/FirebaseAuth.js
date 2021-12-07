@@ -27,7 +27,16 @@ const LogInUser = (email, password) => auth.signInWithEmailAndPassword(email, pa
 
 const LogOut = () => auth.signOut();
 
-const user = firebase.auth().currentUser;
+const user = auth.currentUser;
+// if (user !== null) {
+//   // The user object has basic properties such as display name, email, etc.
+//   console.log(user.displayName);
+//   console.log(user.email);
+//   // The user's ID, unique to the Firebase project. Do NOT use
+//   // this value to authenticate with your backend server, if
+//   // you have one. Use User.getToken() instead.
+//   console.log(user.uid);
+// }
 
 export {
   db, auth, provider, googleRegister, createUserEmail, LogInUser, LogOut, user,

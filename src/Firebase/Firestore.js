@@ -1,12 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import { db } from './FirebaseAuth';
 
-export const creatingNotes = (title, text) => db.collection('allNotes').doc().set({
+const creatingNotes = (title, text) => db.collection('allNotes').doc().set({
   title,
   text,
-  // Date,
+  date: new Date(),
 });
 
-export const allData = db.collection('allNotes');
+const allData = db.collection('allNotes');
 
 // export const allData = db.collection('allNotes').orderBy('dateHour', 'desc').get();
+export { creatingNotes, allData };

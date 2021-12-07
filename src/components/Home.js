@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { LogInUser, googleRegister } from '../Firebase/FirebaseAuth';
+import { LogInUser, googleRegister, user } from '../Firebase/FirebaseAuth';
 import './Home.css';
 // import { auth, provider } from '../firebase';
 
@@ -14,7 +14,7 @@ const Home = () => {
     e.preventDefault();
     LogInUser(emailLogin, password).then(() => {
       history.push('/Feed');
-      console.log('Login ok');
+      console.log(user());
     })
       .catch((err) => alert(err.message));
   };
